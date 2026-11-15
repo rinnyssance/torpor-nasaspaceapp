@@ -150,6 +150,30 @@ export type Database = {
         }
         Relationships: []
       }
+      research_catalog: {
+        Row: {
+          created_at: string
+          data: Json
+          id: string
+          kind: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          data?: Json
+          id: string
+          kind: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          id?: string
+          kind?: string
+          title?: string
+        }
+        Relationships: []
+      }
       research_notes: {
         Row: {
           created_at: string
@@ -207,6 +231,7 @@ export type Database = {
           id: string
           organism: string | null
           osdr_accession: string
+          provenance: Json
           source_url: string
           tissue: string | null
           title: string
@@ -220,6 +245,7 @@ export type Database = {
           id: string
           organism?: string | null
           osdr_accession: string
+          provenance?: Json
           source_url: string
           tissue?: string | null
           title: string
@@ -233,6 +259,7 @@ export type Database = {
           id?: string
           organism?: string | null
           osdr_accession?: string
+          provenance?: Json
           source_url?: string
           tissue?: string | null
           title?: string

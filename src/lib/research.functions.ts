@@ -11,6 +11,8 @@ export const getStudies = createServerFn({ method: 'GET' }).handler(async () => 
   });
   const { data, error } = await client.from('studies').select('*').order('osdr_accession', { ascending: false });
   if (error) throw new Error('Study records are temporarily unavailable. Please try again.');
-  return data;
+  const catalog = await client.from('research_catalog').select('*').order('id');
+  if (catalog.error) throw new Error('Research catalog is temporarily unavailable.');
+  return { studies: data, catalog: catalog.data };
 });
 export const studiesQuery = queryOptions({ queryKey: ['studies'], queryFn: () => getStudies(), staleTime: 60000 });

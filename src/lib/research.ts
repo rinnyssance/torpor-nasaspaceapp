@@ -6,7 +6,7 @@ export const dimensions = ['Biological relevance', 'Technical feasibility', 'Val
 export const categories = ['DNA damage response', 'Oxidative stress', 'Inflammation', 'Extracellular matrix regulation', 'Cellular repair', 'Tissue remodeling', 'Apoptosis', 'Cellular senescence'];
 export const stages = ['Biological discovery', 'Measurement feasibility', 'Experimental validation', 'Wearable engineering', 'Countermeasure research'];
 const probability = z.coerce.number().min(0).max(1);
-export const geneSchema = z.object({ gene_identifier: z.string().min(1), gene_symbol: z.string().optional().default(''), log2_fold_change: z.coerce.number().finite(), p_value: probability.optional(), adjusted_p_value: probability, annotation: z.string().optional().default('') });
+export const geneSchema = z.object({ gene_identifier: z.string().min(1), gene_symbol: z.string().optional().default(''), log2_fold_change: z.coerce.number().finite(), p_value: probability.optional(), adjusted_p_value: probability, annotation: z.string().optional().default(''), comparison_identifier: z.string().optional(), pathway_annotations: z.array(z.string()).optional() });
 export const pathwaySchema = z.object({ pathway_identifier: z.string().min(1), pathway_name: z.string().min(1), enrichment_p_value: probability.optional(), adjusted_p_value: probability, gene_count: z.coerce.number().int().nonnegative(), source_database: z.string().min(1) });
 export type Gene = z.infer<typeof geneSchema>;
 export type Pathway = z.infer<typeof pathwaySchema>;
@@ -23,5 +23,7 @@ export function validateAssessment(status: string, justification: string, citati
   return statuses.includes(status as typeof statuses[number]) && (status === 'Not assessed' || (justification.trim().length > 0 && /^https:\/\//.test(citation)));
 }
 export function sharedGenes(a: Gene[], b: Gene[]) { const ids = new Set(b.map(g => g.gene_identifier)); return a.filter(g => ids.has(g.gene_identifier)); }
+export function significant(g: Gene, q=.05, fold=1) { return g.adjusted_p_value < q && Math.abs(g.log2_fold_change) >= fold; }
+export function mappedGenes(a: Gene[], b: Gene[]) { const groups=new Map<string,Gene[]>();for(const g of a){if(!g.comparison_identifier||!/^\d+$/.test(g.comparison_identifier))continue;groups.set(g.comparison_identifier,[...(groups.get(g.comparison_identifier)??[]),g]);}return b.flatMap(g=>{const match=groups.get(g.comparison_identifier??'');return match?.length===1?[{bone:match[0] as Gene,skin:g,identifier:g.comparison_identifier??''}]:[];}); }
 export function exportFile(name: string, data: unknown) { const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); const a = document.createElement('a'); a.href = url; a.download = name; a.click(); URL.revokeObjectURL(url); }
 export function metadata(title: string, description: string) { return { meta: [{ title: `${title} | TORPOR` }, { name: 'description', content: description }, { property: 'og:title', content: `${title} | TORPOR` }, { property: 'og:description', content: description }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' }] }; }

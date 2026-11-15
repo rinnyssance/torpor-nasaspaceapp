@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseAnalysis, validateAssessment, sharedGenes } from '@/lib/research';
+import { parseAnalysis, validateAssessment, sharedGenes, significant, mappedGenes } from '@/lib/research';
 describe('Scientific data integrity', () => {
   it('requires adjusted p-values in gene results', () => { expect(() => parseAnalysis('[{"gene_identifier":"A","log2_fold_change":1}]', 'json', 'gene')).toThrow('adjusted_p_value'); });
   it('rejects probabilities outside zero to one', () => { expect(() => parseAnalysis('[{"gene_identifier":"A","log2_fold_change":1,"adjusted_p_value":1.2}]', 'json', 'gene')).toThrow(); });
@@ -7,4 +7,6 @@ describe('Scientific data integrity', () => {
   it('uses only the four evidence categories', () => { expect(validateAssessment('Validated', 'Evidence', 'https://doi.org/10.example')).toBe(false); expect(validateAssessment('Not assessed', '', '')).toBe(true); });
   it('does not invent results for empty files', () => { expect(() => parseAnalysis('[]', 'json', 'gene')).toThrow(); });
   it('compares original identifiers, not coincident symbols', () => { const a = { gene_identifier: 'A', gene_symbol: 'X', log2_fold_change: 1, adjusted_p_value: 0.05, annotation: '' }; expect(sharedGenes([a], [{ ...a, gene_identifier: 'B' }])).toEqual([]); });
+  it('requires both adjusted significance and effect thresholds', () => {const g={gene_identifier:'A',gene_symbol:'A',annotation:'',log2_fold_change:.5,adjusted_p_value:.01};expect(significant(g,.05,1)).toBe(false);expect(significant({...g,log2_fold_change:1.2},.05,1)).toBe(true);expect(significant({...g,log2_fold_change:1.2,adjusted_p_value:.05},.05,1)).toBe(false);});
+  it('does not compare ambiguously mapped microarray probes', () => {const g={gene_identifier:'probe1',gene_symbol:'A',annotation:'',log2_fold_change:1,adjusted_p_value:.1,comparison_identifier:'123'};expect(mappedGenes([g,{...g,gene_identifier:'probe2'}],[{...g,gene_identifier:'ENSMUSG1'}])).toEqual([]);expect(mappedGenes([g],[{...g,gene_identifier:'ENSMUSG1'}])[0]?.identifier).toBe('123');});
 });

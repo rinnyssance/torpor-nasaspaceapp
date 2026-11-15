@@ -10,33 +10,153 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ComparisonRouteImport } from './routes/comparison'
+import { Route as DatasetsRouteImport } from './routes/datasets'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as PathwaysRouteImport } from './routes/pathways'
+import { Route as ReadinessRouteImport } from './routes/readiness'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as DatasetsStudyIdRouteImport } from './routes/datasets.$studyId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComparisonRoute = ComparisonRouteImport.update({
+  id: '/comparison',
+  path: '/comparison',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatasetsRoute = DatasetsRouteImport.update({
+  id: '/datasets',
+  path: '/datasets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathwaysRoute = PathwaysRouteImport.update({
+  id: '/pathways',
+  path: '/pathways',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReadinessRoute = ReadinessRouteImport.update({
+  id: '/readiness',
+  path: '/readiness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatasetsStudyIdRoute = DatasetsStudyIdRouteImport.update({
+  id: '/$studyId',
+  path: '/$studyId',
+  getParentRoute: () => DatasetsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/comparison': typeof ComparisonRoute
+  '/datasets': typeof DatasetsRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/pathways': typeof PathwaysRoute
+  '/readiness': typeof ReadinessRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/roadmap': typeof RoadmapRoute
+  '/datasets/$studyId': typeof DatasetsStudyIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/comparison': typeof ComparisonRoute
+  '/datasets': typeof DatasetsRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/pathways': typeof PathwaysRoute
+  '/readiness': typeof ReadinessRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/roadmap': typeof RoadmapRoute
+  '/datasets/$studyId': typeof DatasetsStudyIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/comparison': typeof ComparisonRoute
+  '/datasets': typeof DatasetsRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/pathways': typeof PathwaysRoute
+  '/readiness': typeof ReadinessRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/roadmap': typeof RoadmapRoute
+  '/datasets/$studyId': typeof DatasetsStudyIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/comparison'
+    | '/datasets'
+    | '/library'
+    | '/pathways'
+    | '/readiness'
+    | '/reset-password'
+    | '/roadmap'
+    | '/datasets/$studyId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/comparison'
+    | '/datasets'
+    | '/library'
+    | '/pathways'
+    | '/readiness'
+    | '/reset-password'
+    | '/roadmap'
+    | '/datasets/$studyId'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/comparison'
+    | '/datasets'
+    | '/library'
+    | '/pathways'
+    | '/readiness'
+    | '/reset-password'
+    | '/roadmap'
+    | '/datasets/$studyId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ComparisonRoute: typeof ComparisonRoute
+  DatasetsRoute: typeof DatasetsRouteWithChildren
+  LibraryRoute: typeof LibraryRoute
+  PathwaysRoute: typeof PathwaysRoute
+  ReadinessRoute: typeof ReadinessRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  RoadmapRoute: typeof RoadmapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +168,94 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparison': {
+      id: '/comparison'
+      path: '/comparison'
+      fullPath: '/comparison'
+      preLoaderRoute: typeof ComparisonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datasets': {
+      id: '/datasets'
+      path: '/datasets'
+      fullPath: '/datasets'
+      preLoaderRoute: typeof DatasetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pathways': {
+      id: '/pathways'
+      path: '/pathways'
+      fullPath: '/pathways'
+      preLoaderRoute: typeof PathwaysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/readiness': {
+      id: '/readiness'
+      path: '/readiness'
+      fullPath: '/readiness'
+      preLoaderRoute: typeof ReadinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datasets/$studyId': {
+      id: '/datasets/$studyId'
+      path: '/$studyId'
+      fullPath: '/datasets/$studyId'
+      preLoaderRoute: typeof DatasetsStudyIdRouteImport
+      parentRoute: typeof DatasetsRoute
+    }
   }
 }
 
+interface DatasetsRouteChildren {
+  DatasetsStudyIdRoute: typeof DatasetsStudyIdRoute
+}
+
+const DatasetsRouteChildren: DatasetsRouteChildren = {
+  DatasetsStudyIdRoute: DatasetsStudyIdRoute,
+}
+
+const DatasetsRouteWithChildren = DatasetsRoute._addFileChildren(
+  DatasetsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ComparisonRoute: ComparisonRoute,
+  DatasetsRoute: DatasetsRouteWithChildren,
+  LibraryRoute: LibraryRoute,
+  PathwaysRoute: PathwaysRoute,
+  ReadinessRoute: ReadinessRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  RoadmapRoute: RoadmapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

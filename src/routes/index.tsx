@@ -1,23 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Overview } from '@/components/research/overview';
+import { metadata } from '@/lib/research';
+import { studiesQuery } from '@/lib/research.functions';
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => metadata('Research Overview', 'TORPOR connects space biology evidence to candidate measurements and future wearable validation research.'),
+  loader: ({ context }) => context.queryClient.ensureQueryData(studiesQuery),
+  component: Overview,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}

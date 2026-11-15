@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Research workspace architecture
+- Keep content screens as distinct TanStack leaf routes sharing a persistent workspace shell; navigation stays directly addressable.
+- Load public study references through a publishable server function and route Query loader; private workspace reads use the browser client after session hydration with owner RLS.
+- Store imported gene/pathway arrays atomically in an analysis JSONB record with provenance; schema-validate each row before persisting to avoid partial imports.
+- Store structured candidate, reference, roadmap and note fields in owner-protected JSONB records; never persist editable research in browser storage.
+- Keep statistical parsing and evidence rules in pure research utilities with focused tests; charts only render imported records.

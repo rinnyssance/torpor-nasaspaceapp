@@ -40,3 +40,5 @@ use the editor.
 - Save structured findings as owner-private research-note records tagged by record type and linked to source analyses, so interpretation stays separate from numerical evidence.
 - Render sample heatmaps only from validated normalized-expression records with consistent source sample identifiers; never synthesize sample values from effect sizes.
 - Keep expression schema validation independent from gene statistics utilities to prevent circular scientific imports.
+
+- Compose the overview from browser-safe research panels using existing validated analyses; shared semantic CSS tokens and a persisted display-only theme keep research data out of browser storage.

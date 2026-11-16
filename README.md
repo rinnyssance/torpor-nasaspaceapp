@@ -27,3 +27,6 @@ Configure credentials through hosted secret management; never commit private key
 Prepared result arrays are imported as gene, pathway or normalized-expression analyses. The import dialog records study, source URL, method and import date; user imports remain explicitly unverified. Scientific exports include source/method information. CSV is provided alongside a provenance-bearing JSON export. Research Findings saves numerical evidence separately from interpretation, limitations and follow-up questions.
 
 See `scripts/schemas.md` for supported file shapes. All research is exploratory, not clinical diagnosis or operational astronaut monitoring.
+
+## Guided walkthrough
+See [the GitHub and research walkthrough](docs/GITHUB_WALKTHROUGH.md) for Git sync, safe collaboration, local setup and the scientific dashboard journey.

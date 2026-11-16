@@ -18,3 +18,10 @@
 - [x] Add saved, source-linked research findings and measurement investigations
 - [x] Strengthen criterion-based comparison and descriptive interpretation
 - [x] Update real-record overview, research documentation, tests and acceptance checks
+
+## Scientific dashboard and walkthroughs
+- [x] Integrate supplied logo, light/dark scientific workspace, and compact navigation
+- [x] Replace promotional overview with source-linked interactive analysis dashboard
+- [x] Polish dataset, notebook, readiness, comparison and engineering roadmap presentation
+- [x] Verify desktop/mobile controls and existing scientific tests
+- [ ] Deliver GitHub walkthrough and downloadable walkthrough video

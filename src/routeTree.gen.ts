@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ComparisonRouteImport } from './routes/comparison'
 import { Route as DatasetsRouteImport } from './routes/datasets'
+import { Route as FindingsRouteImport } from './routes/findings'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PathwaysRouteImport } from './routes/pathways'
 import { Route as ReadinessRouteImport } from './routes/readiness'
@@ -38,6 +39,11 @@ const ComparisonRoute = ComparisonRouteImport.update({
 const DatasetsRoute = DatasetsRouteImport.update({
   id: '/datasets',
   path: '/datasets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindingsRoute = FindingsRouteImport.update({
+  id: '/findings',
+  path: '/findings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/comparison': typeof ComparisonRoute
   '/datasets': typeof DatasetsRouteWithChildren
+  '/findings': typeof FindingsRoute
   '/library': typeof LibraryRoute
   '/pathways': typeof PathwaysRoute
   '/readiness': typeof ReadinessRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/comparison': typeof ComparisonRoute
   '/datasets': typeof DatasetsRouteWithChildren
+  '/findings': typeof FindingsRoute
   '/library': typeof LibraryRoute
   '/pathways': typeof PathwaysRoute
   '/readiness': typeof ReadinessRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/comparison': typeof ComparisonRoute
   '/datasets': typeof DatasetsRouteWithChildren
+  '/findings': typeof FindingsRoute
   '/library': typeof LibraryRoute
   '/pathways': typeof PathwaysRoute
   '/readiness': typeof ReadinessRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/comparison'
     | '/datasets'
+    | '/findings'
     | '/library'
     | '/pathways'
     | '/readiness'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/comparison'
     | '/datasets'
+    | '/findings'
     | '/library'
     | '/pathways'
     | '/readiness'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/comparison'
     | '/datasets'
+    | '/findings'
     | '/library'
     | '/pathways'
     | '/readiness'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ComparisonRoute: typeof ComparisonRoute
   DatasetsRoute: typeof DatasetsRouteWithChildren
+  FindingsRoute: typeof FindingsRoute
   LibraryRoute: typeof LibraryRoute
   PathwaysRoute: typeof PathwaysRoute
   ReadinessRoute: typeof ReadinessRoute
@@ -187,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/datasets'
       fullPath: '/datasets'
       preLoaderRoute: typeof DatasetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/findings': {
+      id: '/findings'
+      path: '/findings'
+      fullPath: '/findings'
+      preLoaderRoute: typeof FindingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -251,6 +271,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ComparisonRoute: ComparisonRoute,
   DatasetsRoute: DatasetsRouteWithChildren,
+  FindingsRoute: FindingsRoute,
   LibraryRoute: LibraryRoute,
   PathwaysRoute: PathwaysRoute,
   ReadinessRoute: ReadinessRoute,

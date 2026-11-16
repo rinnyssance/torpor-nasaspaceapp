@@ -1,26 +1,29 @@
-# Torpor Nasaspaceapp
+# TORPOR computational biology workspace
 
-Implement exactly the screenshot and nothing else
+Research question: How does spaceflight alter molecular pathways involved in tissue maintenance and repair in bone and skin, and what could inform future measurement hypotheses?
 
-This project was built with [Lovable](https://lovable.dev).
+## Repository and structure
+Target research repository: `rinnyssance/torpor-nasaspaceapp`. Git sync is configured in Lovable Project settings → Git; app commits do not publish the website.
 
-**Live app**: https://torpor-nasaspaceapp.lovable.app
+- `src/`: TanStack Start application, owner-protected findings/imports, public scientific catalog, source-linked charts.
+- `scripts/`: reproducible Python source preparation, requirements and methods.
+- `drizzle/migrations/`: managed schema history; not research data snapshots.
+- `src/test/`: threshold, mapping, import and evidence tests.
 
-## Build with Lovable
+## Research data and limitations
+NASA OSD-324: Ocy454 osteocytic cell microarray, selected 2-day flight−ground contrast. NASA OSD-238: mouse dorsal-skin bulk RNA-seq, ground−flight standard-chow contrast. Original statistics are retained; TORPOR does not fit raw sequencing models in the browser. Displayed 2,000-row differential-expression subsets and top-100 GO outputs are explicitly incomplete transcriptomes. GO over-representation is Python Fisher exact with BH correction and complete valid-result background. Independent experiments cannot establish matched tissue effects, pathway activation, damage, or human astronaut physiology.
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/4fbecd06-86bb-4108-8198-9dcaaa81b0dd).
+The OSD-238 sample matrix contains six selected source genes and six actual normalized biological samples. Counts are not fabricated from fold changes. Refer to `scripts/README.md` for sources and processing.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
+## Application development
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev
+bunx vitest run
 ```
+Configure credentials through hosted secret management; never commit private keys, sessions or restricted data. No editable research is stored in browser storage. Private research persists through owner-protected records.
+
+## Import and export
+Prepared result arrays are imported as gene, pathway or normalized-expression analyses. The import dialog records study, source URL, method and import date; user imports remain explicitly unverified. Scientific exports include source/method information. CSV is provided alongside a provenance-bearing JSON export. Research Findings saves numerical evidence separately from interpretation, limitations and follow-up questions.
+
+See `scripts/schemas.md` for supported file shapes. All research is exploratory, not clinical diagnosis or operational astronaut monitoring.

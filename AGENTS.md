@@ -37,3 +37,6 @@ use the editor.
 - Keep statistical parsing and evidence rules in pure research utilities with focused tests; charts only render imported records.
 - Public curated records live in the read-only research catalog and merge with owner-private records; editing a curated item creates a personal copy.
 - Extract source statistics with the versioned Python preparation script and retain hashes, contrast direction, subset selection and enrichment background; never treat mapped symbols as original identifiers.
+- Save structured findings as owner-private research-note records tagged by record type and linked to source analyses, so interpretation stays separate from numerical evidence.
+- Render sample heatmaps only from validated normalized-expression records with consistent source sample identifiers; never synthesize sample values from effect sizes.
+- Keep expression schema validation independent from gene statistics utilities to prevent circular scientific imports.

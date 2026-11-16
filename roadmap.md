@@ -11,3 +11,10 @@
 - [x] Add selection, significance, sorting and comparison visualizations
 - [x] Populate five cited measurement hypotheses and five-stage research tasks
 - [x] Update overview with actual data availability and test visitor/researcher flows
+## Computational biology functionality upgrade
+- [ ] Verify real NASA gene → volcano → enrichment milestone
+- [ ] Add numerical summaries, result exports, searchable interactive pathway analysis
+- [ ] Add source-normalized sample heatmap and reproducible import pipeline
+- [ ] Add saved, source-linked research findings and measurement investigations
+- [ ] Strengthen criterion-based comparison and descriptive interpretation
+- [ ] Update real-record overview, research documentation, tests and acceptance checks

@@ -20,6 +20,7 @@
 - [x] Update real-record overview, research documentation, tests and acceptance checks
 
 ## Scientific dashboard and walkthroughs
+- [x] Make the first page chart-first with compact controls and collapsed research explanations
 - [x] Integrate supplied logo, light/dark scientific workspace, and compact navigation
 - [x] Replace promotional overview with source-linked interactive analysis dashboard
 - [x] Polish dataset, notebook, readiness, comparison and engineering roadmap presentation

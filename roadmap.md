@@ -25,4 +25,4 @@
 - [x] Replace promotional overview with source-linked interactive analysis dashboard
 - [x] Polish dataset, notebook, readiness, comparison and engineering roadmap presentation
 - [x] Verify desktop/mobile controls and existing scientific tests
-- [ ] Deliver GitHub walkthrough and downloadable walkthrough video
+- [x] Deliver GitHub walkthrough and downloadable walkthrough video
